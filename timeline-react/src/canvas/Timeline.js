@@ -1,4 +1,3 @@
-import TimelineEvent  from "./TimelineEvent.js";
 import * as TimelineScale from "./TimelineScale.js"
 
 export default class Timeline{
@@ -94,7 +93,7 @@ export default class Timeline{
 
     
     _setVisiblePartOfTimeline(){
-        if(this.eventsArr.length == 0) return;
+        if(this.eventsArr.length === 0) return;
         this._visiblePartOfTimeline = [];
         let currEvent;
         for(let i=0; i < this.eventsArr.length; i++){

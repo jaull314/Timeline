@@ -3,7 +3,7 @@ function _splitTitleOrTimeArr(lineLength, str){
     let currLine = "";
     for(let i=0; i < str.length; i++){
         currLine += str[i];
-        if(currLine.length % lineLength === 0 || i == str.length - 1){
+        if(currLine.length % lineLength === 0 || i === str.length - 1){
             splitArr.push(currLine);
             currLine = ""
         }

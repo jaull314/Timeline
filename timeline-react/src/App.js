@@ -1,3 +1,4 @@
+import TimelineEvent from "./canvas/TimelineEvent.js";
 import SingleTimeline from "./components/SingleTimeline.jsx"
 
 function App() {
@@ -5,7 +6,7 @@ function App() {
     new TimelineEvent("Treaty of Paris", 1783), 
     new TimelineEvent("Start of Civil War", 1861), 
     new TimelineEvent("End of Civil War", 1865)];
-
+    
   return <SingleTimeline timelineEventArr={arrTimeline}/>;
 }
 export default App;
