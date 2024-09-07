@@ -1,7 +1,13 @@
 import Timeline from "../canvas/Timeline.js"
+import TimelineCanvas from "./TimelineCanvas.jsx";
+import { useRef, useState } from "react";
 
 export default function SingleTimeline({timelineEventArr}){
-    let timelineRef = new Timeline(timelineEventArr)
-    console.log(timelineRef)
-    return <h1>Hey Yall!</h1>
+    let timelineRef = useRef(new Timeline(timelineEventArr));
+
+    let [visiblePartOfTimeline, setVisiblePartOfTimeline] = useState(timelineRef.current.visiblePartOfTimeline);
+
+    return (
+        <TimelineCanvas timelineObj={timelineRef.current}/>
+    )
 }

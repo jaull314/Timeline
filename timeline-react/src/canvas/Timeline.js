@@ -14,7 +14,7 @@ export default class Timeline{
         displayed portion of the timeline */
         this._earliestEventOfTimeline = (eventsArr.length > 0) ? eventsArr[0].timeOfEvent : undefined;
         this._latestEventOfTimeline = (eventsArr.length > 0) ? eventsArr[eventsArr.length - 1].timeOfEvent : undefined;
-        this._visiblePartOfTimeline= [];
+        this.visiblePartOfTimeline= [];
         this._unitsPerPixel = 1;
         this._maxUnitsPerPixel = 1;
         this._minUnitsPerPixel = .01;
