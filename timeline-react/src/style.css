@@ -5,13 +5,14 @@
 
 }
 
-#buttonContainer {
+.buttonContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
-#scrollLeft, #scrollRight, #zoomOut, #zoomIn {
+.scrollLeft, .scrollRight, .zoomOut, .zoomIn {
     height: 2vw;
     width: 4vw;
+    margin: .25vw .25vw;
 }
