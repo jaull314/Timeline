@@ -8,6 +8,6 @@ export default function SingleTimeline({timelineEventArr}){
     let [visiblePartOfTimeline, setVisiblePartOfTimeline] = useState(timelineRef.current.visiblePartOfTimeline);
 
     return (
-        <TimelineCanvas timelineObj={timelineRef.current}/>
+        <TimelineCanvas color={"red"} timelineObj={timelineRef.current}/>
     )
 }

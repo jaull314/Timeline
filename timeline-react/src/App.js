@@ -1,5 +1,6 @@
 import TimelineEvent from "./canvas/TimelineEvent.js";
 import SingleTimeline from "./components/SingleTimeline.jsx"
+import "./style.css"
 
 function App() {
   const arrTimeline = [  new TimelineEvent("Declaration Of Independence", 1776),
