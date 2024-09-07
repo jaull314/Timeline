@@ -1,4 +1,6 @@
+import SingleTimeline from "./components/SingleTimeline.jsx"
+
 function App() {
-  return <div className='App'>Hello World</div>;
+  return <SingleTimeline/>;
 }
 export default App;
