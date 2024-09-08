@@ -3,7 +3,7 @@ import * as TimelineText from "./TimelineText.js"
 export default class TimelineEvent{
 
     constructor(titleStr, timeOfEvent){
-        this._title = titleStr;
+        this.title = titleStr;
         this.timeOfEvent = timeOfEvent;
         this._lineLength = 12;
         const titleMaxNumLines = 3;
@@ -18,7 +18,7 @@ export default class TimelineEvent{
     }
 
     returnElipsisObj(){
-        let elipsisObj = new TimelineEvent(this._title, this.timeOfEvent);
+        let elipsisObj = new TimelineEvent(this.title, this.timeOfEvent);
         let elipsisPlaceHolder = [];
         // change 5 to this.maxNumOfLinesForTitleAndTime
         for(let i=0; i < this.totalMaxNumLines; i++){

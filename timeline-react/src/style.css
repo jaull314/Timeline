@@ -16,3 +16,38 @@
     width: 4vw;
     margin: .25vw .25vw;
 }
+
+.slots {
+    width: 75%;
+    min-height: 16.5vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+}
+
+.card {
+    position: relative;
+    width: 12vw;
+    height: 16vw;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 0vw;
+    margin: 1vw;
+}
+
+.card h3 {
+    color: white;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+.card p {
+    position: absolute;
+    bottom: 0px;
+    height: 11.5vw;
+    width: 100%;
+    background-color: white;
+    margin: 0vw;
+}
