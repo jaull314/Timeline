@@ -1,7 +1,7 @@
-import Timeline from "../canvas/Timeline.js"
+import Timeline from "../TimelineClasses/Timeline.js"
 import TimelineCanvas from "./TimelineCanvas.jsx";
 import ScrollableCards from "./ScrollableCards.jsx";
-import { useRef, useState, useEffect} from "react";
+import { useRef, useState} from "react";
 
 export default function SingleTimeline({timelineEventArr}){
     let timelineRef = useRef(new Timeline(timelineEventArr));

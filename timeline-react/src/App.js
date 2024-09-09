@@ -1,4 +1,4 @@
-import TimelineEvent from "./canvas/TimelineEvent.js";
+import TimelineEvent from "./TimelineClasses/TimelineEvent.js";
 import SingleTimeline from "./components/SingleTimeline.jsx"
 import "./style.css"
 
