@@ -1,13 +1,11 @@
-import TimelineEvent from "./TimelineClasses/TimelineEvent.js";
-import SingleTimeline from "./components/SingleTimeline.jsx"
+import { Outlet } from "react-router-dom";
 import "./style.css"
 
 function App() {
-  const arrTimeline = [  new TimelineEvent("Declaration Of Independence", 1776),
-    new TimelineEvent("Treaty of Paris", 1783), 
-    new TimelineEvent("Start of Civil War", 1861), 
-    new TimelineEvent("End of Civil War", 1865)];
-    
-  return <SingleTimeline timelineEventArr={arrTimeline}/>;
+  return  (
+        <>
+          <Outlet />
+        </>
+  )
 }
 export default App;
