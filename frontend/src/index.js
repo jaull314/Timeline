@@ -8,12 +8,14 @@ import {createBrowserRouter,
 } from 'react-router-dom';
 import TimelineSelectMenu from "./screens/TimelineSelectMenu";
 import Home from "./screens/Home";
+import SingleTimelineScreen from './screens/SingleTimelineScreen';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<Home/>} />
       <Route path="/TimelineSelectMenu" element={<TimelineSelectMenu/>} />
+      <Route path="/SingleTimelineScreen" element={<SingleTimelineScreen/>}/>
     </Route>
   )
 )
