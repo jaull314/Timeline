@@ -37,4 +37,5 @@ export async function deleteEvent(req, res){
     const id = req.params.id;
     const eventId = req.params.eventId;
     let deletedEvent = await Timeline.findByIdAndUpdate(id, {$pull: {timelineEvents: {_id: eventId}}})
+    res.json(deleteEvent)
 }
