@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 export default function TimelineSelectMenu(){
       const [timelines, setTimelines] = useState([]);
 
-      useEffect(() => {
-        const fetchAllTimelines = async () => {
+      const fetchAndSetAllTimelines = async () => {
             try {
                   const response = await fetch('http://localhost:5000/getAllTimelines');
                   if (!response.ok) {
@@ -17,8 +16,10 @@ export default function TimelineSelectMenu(){
                   console.error('Error fetching timelines:', error);
             }
           
-        }
-        fetchAllTimelines();
+      }
+
+      useEffect(() => {
+        fetchAndSetAllTimelines();
       }, [])
 
       if(timelines.length){

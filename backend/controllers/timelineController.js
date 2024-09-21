@@ -25,7 +25,7 @@ export async function addTimeline(req, res){
 
 export async function addTimelineEvent(req, res){
     let updatedDoc = await Timeline.updateOne(
-        {_id: '66ee1fa6b93512b9316b2347'},
+        {_id: '66ee31887a97776597c47fd6'},
         {$push: {timelineEvents: {title: "Treaty of Paris", timeOfEvent: 1783}}}
         
     )
@@ -33,3 +33,8 @@ export async function addTimelineEvent(req, res){
     res.json(updatedDoc)
 }
 
+export async function deleteEvent(req, res){
+    const id = req.params.id;
+    const eventId = req.params.eventId;
+    let deletedEvent = await Timeline.findByIdAndUpdate(id, {$pull: {timelineEvents: {_id: eventId}}})
+}

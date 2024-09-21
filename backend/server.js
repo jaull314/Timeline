@@ -4,7 +4,7 @@ import sampleEvents from './data/sampleEvents.js';
 import connectDB from './config/db.js';
 import cors from 'cors';
 import express from 'express';
-import {getTimeline, getAllTimelines, addTimelineEvent} from './controllers/timelineController.js';
+import {getTimeline, getAllTimelines, addTimelineEvent, deleteEvent} from './controllers/timelineController.js';
 
 connectDB() //connect to Mongo Database
 
@@ -21,9 +21,12 @@ app.get("/", (req, res) => {
 })
 
 app.get("/getTimeline/:id", getTimeline);
+
 app.get("/getAllTimelines", getAllTimelines);
 
 app.get("/addTimelineEvent", addTimelineEvent);
+
+app.delete("/deleteEvent/:id/:eventId", deleteEvent)
 
 app.listen(port, () => {
     console.log(`Server is running on ${port}`);
