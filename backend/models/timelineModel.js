@@ -2,8 +2,17 @@ import mongoose from 'mongoose';
 
 const timelineSchema = mongoose.Schema(
   {
-    title: { type: String, required: true },
-    time: { type: Number, required: true },
+    timelineColor: {type:String, required: true},
+    
+    timelineName: { type:String, required: true},
+
+    timelineEvents: [
+      {
+        title: { type: String, required: true },
+        timeOfEvent: { type: Number, required: true }
+      }
+    ]
+
   }
 );
 

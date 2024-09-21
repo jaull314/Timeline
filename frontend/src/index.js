@@ -9,6 +9,7 @@ import {createBrowserRouter,
 import TimelineSelectMenu from "./screens/TimelineSelectMenu";
 import Home from "./screens/Home";
 import SingleTimelineScreen from './screens/SingleTimelineScreen';
+import EditTimeline from './screens/EditTimeline';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<Home/>} />
       <Route path="/TimelineSelectMenu" element={<TimelineSelectMenu/>} />
       <Route path="/SingleTimelineScreen" element={<SingleTimelineScreen/>}/>
+      <Route path="/EditTimeline/:id" element={<EditTimeline/>}/>
     </Route>
   )
 )
