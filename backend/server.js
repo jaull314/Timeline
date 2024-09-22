@@ -13,6 +13,7 @@ const port = process.env.PORT || 5000;
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res) => {
     let timelineDocId = addTimeline();
@@ -24,7 +25,7 @@ app.get("/getTimeline/:id", getTimeline);
 
 app.get("/getAllTimelines", getAllTimelines);
 
-app.get("/addTimelineEvent", addTimelineEvent);
+app.post("/addTimelineEvent/:id", addTimelineEvent);
 
 app.delete("/deleteEvent/:id/:eventId", deleteEvent)
 

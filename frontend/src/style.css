@@ -52,6 +52,16 @@
     margin: 0vw;
 }
 
+.header{
+    width: fit-content;
+    margin: 2vw auto;
+}
+
+table{
+    width: fit-content;
+    margin: 0 auto;
+}
+
 .evenRow{
     margin: 0;
     background-color: rgb(195, 215, 225);
@@ -76,3 +86,25 @@
     width: 4%;
 }
 
+.inputDiv{
+    width: 42%;
+    margin: .5vw auto;
+}
+
+.input{
+    margin: .5vw;
+}
+
+.addBtn{
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(12, 210, 56);
+    color: white;
+    padding: .5vw 1vw;
+    cursor: pointer;
+}
+
+.addBtn:disabled{
+    background-color: rgb(12, 210, 56);
+    opacity: 0.5;
+}

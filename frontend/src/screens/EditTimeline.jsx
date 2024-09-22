@@ -1,15 +1,18 @@
 import { useParams } from "react-router-dom"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 export default function EditTimeline(){
     const {id} = useParams();
     const [timelineEvents, setTimelineEvents] = useState([]);
+    const strInputRef = useRef(null);
+    const numInputRef = useRef(null);
+    const addBtnRef = useRef(null);
 
-    const updateAndRenderTimelineEvents = async () => {
+    const fetchAndRenderTimelineEvents = async () => {
       try {
-            const response = await fetch('http://localhost:5000/getTimeline/' + id);
+            const response = await fetch(`http://localhost:5000/getTimeline/${id}`);
             if (!response.ok) {
                   throw new Error('Network response was not ok');
             }
@@ -21,17 +24,49 @@ export default function EditTimeline(){
     }
 
     const deleteEvent = async (id, eventId) => {
-      let fetchVar = await fetch(`http://localhost:5000/deleteEvent/${id}/${eventId}`, { method: 'DELETE' })
-      updateAndRenderTimelineEvents();
+      await fetch(`http://localhost:5000/deleteEvent/${id}/${eventId}`, { method: 'DELETE' })
+      fetchAndRenderTimelineEvents();
+    }
+
+    const onChangeHandler = () => {
+      if(strInputRef.current.value.length > 0 && numInputRef.current.value.length > 0){
+            addBtnRef.current.disabled = false;
+      }else{
+            addBtnRef.current.disabled = true;
+      }
+    }
+
+    const addAndRenderNewEvent = async () => {
+      let data = {title: strInputRef.current.value, timeOfEvent: parseInt(numInputRef.current.value)}
+      await fetch(`http://localhost:5000/addTimelineEvent/${id}`,
+            {
+                  method: 'POST',
+                  headers: {
+                        'Content-Type': 'application/json', // This is crucial
+                    },
+                  body: JSON.stringify(data)
+            }
+      )
+      strInputRef.current.value = "";
+      numInputRef.current.value = "";
+      fetchAndRenderTimelineEvents();
     }
 
     useEffect(() => {
-      updateAndRenderTimelineEvents();
+      addBtnRef.current.disabled = true;
+      fetchAndRenderTimelineEvents();
     }, [])
 
     return (
         <>
-            <h1>Edit Timeline</h1>
+            <h1 className="header">Edit Timeline</h1>
+            <div className="inputDiv">
+                  <label>Title Of Event</label>
+                  <input className="input" type="text" ref={strInputRef} onChange={onChangeHandler}></input>
+                  <label>Time Of Event</label>
+                  <input className="input" type="number" ref={numInputRef} onChange={onChangeHandler}></input>
+                  <button className="addBtn" onClick={addAndRenderNewEvent} ref={addBtnRef}>Add</button>
+            </div>
             <table>
                   <thead>
                         <tr>
