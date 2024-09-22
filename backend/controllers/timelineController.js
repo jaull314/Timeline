@@ -35,6 +35,12 @@ export async function addTimelineEvent(req, res){
     res.json(updatedDoc)
 }
 
+export async function deleteTimeline(req, res){
+    const id = req.params.id;
+    let deletedTimeline = await Timeline.findByIdAndDelete(id)
+    res.json(deleteTimeline)
+}
+
 export async function deleteEvent(req, res){
     const id = req.params.id;
     const eventId = req.params.eventId;

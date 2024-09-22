@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 export default function TimelineSelectMenu(){
       const [timelines, setTimelines] = useState([]);
@@ -19,6 +21,11 @@ export default function TimelineSelectMenu(){
                   console.error('Error fetching timelines:', error);
             }
           
+      }
+
+      const deleteTimeline = async (id) => {
+            await fetch(`http://localhost:5000/deleteTimeline/${id}`, { method: 'DELETE' })
+            fetchAndRenderAllTimelines();
       }
 
       const onChangeHandler = () => {
@@ -63,10 +70,11 @@ export default function TimelineSelectMenu(){
             <table>
                   <thead>
                         <tr>
-                              <th className="tableCol">ID</th>
+                              <th className="tableCol">Id</th>
                               <th className="tableCol">Color</th>
                               <th className="tableCol">Name</th>
                               <th className="tableCol">Edit</th>
+                              <th className="tableCol">Delete</th>
                         </tr>
                   </thead>
                   <tbody>
@@ -76,6 +84,11 @@ export default function TimelineSelectMenu(){
                                     <td className="tableCol">{timeline.timelineColor}</td>
                                     <td className="tableCol">{timeline.timelineName}</td>
                                     <td className="tableCol"><Link to={"/EditTimeline/" + timeline._id}>Edit </Link></td>
+                                    <td className="tableCol trashCanCol">
+                                          <button className="trashCanBtn" onClick={() => {deleteTimeline(timeline._id)}}>
+                                                <FontAwesomeIcon icon={faTrashCan} />
+                                          </button>
+                                    </td>
                               </tr>
                         ))}
                   </tbody>
