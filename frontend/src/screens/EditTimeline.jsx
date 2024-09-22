@@ -37,6 +37,7 @@ export default function EditTimeline(){
     }
 
     const addAndRenderNewEvent = async () => {
+      addBtnRef.current.disabled = true;
       let data = {title: strInputRef.current.value, timeOfEvent: parseInt(numInputRef.current.value)}
       await fetch(`http://localhost:5000/addTimelineEvent/${id}`,
             {

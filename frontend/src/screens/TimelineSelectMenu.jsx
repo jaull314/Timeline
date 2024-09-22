@@ -37,6 +37,7 @@ export default function TimelineSelectMenu(){
       }
 
       const addAndRenderNewTimeline= async () => {
+            addBtnRef.current.disabled = true;
             let data = {color: colorInputRef.current.value, name: nameInputRef.current.value}
             await fetch(`http://localhost:5000/addTimeline`,
                   {
@@ -64,7 +65,7 @@ export default function TimelineSelectMenu(){
                   <label>Timeline Color</label>
                   <input className="input" type="text" ref={colorInputRef} onChange={onChangeHandler}></input>
                   <label>Timeline Name</label>
-                  <input className="input" type="number" ref={nameInputRef} onChange={onChangeHandler}></input>
+                  <input className="input" type="text" ref={nameInputRef} onChange={onChangeHandler}></input>
                   <button className="addBtn" onClick={addAndRenderNewTimeline} ref={addBtnRef}>Add</button>
             </div>
             <table>
