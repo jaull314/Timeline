@@ -16,7 +16,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<Home/>} />
       <Route path="/TimelineSelectMenu" element={<TimelineSelectMenu/>} />
-      <Route path="/SingleTimelineScreen" element={<SingleTimelineScreen/>}/>
+      <Route path="/SingleTimelineScreen/:id" element={<SingleTimelineScreen/>}/>
       <Route path="/EditTimeline/:id" element={<EditTimeline/>}/>
     </Route>
   )

@@ -1,14 +1,20 @@
+import TimelineEvent from "../TimelineClasses/TimelineEvent.js";
 import Timeline from "../TimelineClasses/Timeline.js"
 import TimelineCanvas from "./TimelineCanvas.jsx";
 import ScrollableCards from "./ScrollableCards.jsx";
 import { useRef, useState} from "react";
 
-export default function SingleTimeline({timelineEventArr}){
-    let timelineRef = useRef(new Timeline(timelineEventArr));
+export default function SingleTimeline({timelineObj}){
+    let eventsArr = [];
+    for(let i=0; i < timelineObj.timelineEvents.length; i++){
+        let timelineEventsArr = timelineObj.timelineEvents[i]
+        eventsArr.push(new TimelineEvent(timelineEventsArr.title, timelineEventsArr.timeOfEvent))
+    }
+    let timelineRef = useRef(new Timeline(eventsArr));
     let [visibleTimelineArr, setVisibleTimelineArr] = useState(timelineRef.current.visiblePartOfTimeline);   
 
     return (
-        <>
+        <> 
             <ScrollableCards color={"red"} visibleEvents={visibleTimelineArr} />
             <TimelineCanvas color={"red"} timelineObj={timelineRef.current}/>
             <div className="buttonContainer">
@@ -34,8 +40,8 @@ export default function SingleTimeline({timelineEventArr}){
                             setVisibleTimelineArr(timelineRef.current.visiblePartOfTimeline);}
                     }> &gt; </button>
                 </div>
-            </div>
-        </>
+            </div> 
+        </> 
     )
 
 }

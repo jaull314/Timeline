@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 export default function EditTimeline(){
     const {id} = useParams();

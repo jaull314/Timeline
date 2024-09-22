@@ -1,12 +1,28 @@
-import TimelineEvent from "../TimelineClasses/TimelineEvent.js";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import SingleTimeline from "../components/SingleTimeline.jsx"
 
-
 export default function SingleTimelineScreen(){
-    const arrTimeline = [new TimelineEvent("Declaration Of Independence", 1776),
-        new TimelineEvent("Treaty of Paris", 1783), 
-        new TimelineEvent("Start of Civil War", 1861), 
-        new TimelineEvent("End of Civil War", 1865)];
-        
-      return <SingleTimeline timelineEventArr={arrTimeline}/>;
+  const {id} = useParams();
+  const [timeline, setTimeline] = useState(null);
+
+  const fetchTimeline = async () => {
+    try {
+          const response = await fetch(`http://localhost:5000/getTimeline/${id}`);
+          if (!response.ok) {
+                throw new Error('Network response was not ok');
+          }
+          const timelineResponse = await response.json();
+          setTimeline(timelineResponse)
+    } catch (error) {
+          console.error('Error fetching timelines:', error);
+    }
+  }
+
+  useEffect(() => {
+    fetchTimeline()
+  }, [])
+    
+    
+      return (timeline === null) ? <></> : <SingleTimeline timelineObj={timeline}/>;
 }

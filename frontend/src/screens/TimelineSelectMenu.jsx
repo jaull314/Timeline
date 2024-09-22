@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 export default function TimelineSelectMenu(){
+      const navigate = useNavigate();
       const [timelines, setTimelines] = useState([]);
       const colorInputRef = useRef(null);
       const nameInputRef = useRef(null);
@@ -70,10 +71,13 @@ export default function TimelineSelectMenu(){
       }
 
       const viewTimeline = () => {
-            console.log("view timeline");
+            const checkedBoxArr = document.querySelectorAll('input[type="checkbox"]:checked');
+            const id = checkedBoxArr[0].value;
+            navigate(`/SingleTimelineScreen/${id}`)
       }
 
       const viewBothTimelines = () => {
+            const checkedBoxArr = document.querySelectorAll('input[type="checkbox"]:checked');
             console.log("view both timelines");
       }
 
