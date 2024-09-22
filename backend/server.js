@@ -4,7 +4,7 @@ import sampleEvents from './data/sampleEvents.js';
 import connectDB from './config/db.js';
 import cors from 'cors';
 import express from 'express';
-import {getTimeline, getAllTimelines, addTimelineEvent, deleteEvent} from './controllers/timelineController.js';
+import {getTimeline, getAllTimelines, addTimelineEvent, addTimeline, deleteEvent} from './controllers/timelineController.js';
 
 connectDB() //connect to Mongo Database
 
@@ -16,7 +16,6 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    let timelineDocId = addTimeline();
     console.log(timelineDocId)
     res.json(sampleEvents)
 })
@@ -24,6 +23,8 @@ app.get("/", (req, res) => {
 app.get("/getTimeline/:id", getTimeline);
 
 app.get("/getAllTimelines", getAllTimelines);
+
+app.post("/addTimeline", addTimeline);
 
 app.post("/addTimelineEvent/:id", addTimelineEvent);
 

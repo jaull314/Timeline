@@ -15,27 +15,24 @@ export async function getAllTimelines(req, res){
 }
 
 export async function addTimeline(req, res){
+    const {color, name} = req.body;
     let timelineDoc = await Timeline.create({
-            timelineColor: "Azure",
-            timelineName: "Bobbity BOOO!"
+            timelineColor: color,
+            timelineName: name
     })
-    console.log(timelineDoc)
     res.json(timelineDoc)
 }
 
 export async function addTimelineEvent(req, res){
     const id = req.params.id;
     const {title, timeOfEvent} = req.body;
-    console.log("title", title)
-    console.log("timeOfEvent", timeOfEvent)
-    /*let updatedDoc = await Timeline.updateOne(
+    let updatedDoc = await Timeline.updateOne(
         {_id: id},
-        {$push: {timelineEvents: {title: "Treaty of Paris", timeOfEvent: 1783}}}
+        {$push: {timelineEvents: {title: title, timeOfEvent: timeOfEvent}}}
         
     )
     console.log(updatedDoc)
-    res.json(updatedDoc)*/
-    res.send("hyellow")
+    res.json(updatedDoc)
 }
 
 export async function deleteEvent(req, res){
