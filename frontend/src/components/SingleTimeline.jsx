@@ -5,11 +5,7 @@ import ScrollableCards from "./ScrollableCards.jsx";
 import { useRef, useState} from "react";
 
 export default function SingleTimeline({timelineObj}){
-    let eventsArr = [];
-    for(let i=0; i < timelineObj.timelineEvents.length; i++){
-        let timelineEventsArr = timelineObj.timelineEvents[i]
-        eventsArr.push(new TimelineEvent(timelineEventsArr.title, timelineEventsArr.timeOfEvent))
-    }
+    let eventsArr = timelineObj.timelineEvents.map((tEvent) => new TimelineEvent(tEvent.title, tEvent.timeOfEvent));
     let timelineRef = useRef(new Timeline(eventsArr));
     let [visibleTimelineArr, setVisibleTimelineArr] = useState(timelineRef.current.visiblePartOfTimeline);   
 
