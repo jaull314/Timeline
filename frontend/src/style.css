@@ -98,13 +98,31 @@ table{
 .addBtn{
     border: none;
     border-radius: 5px;
-    background-color: rgb(12, 210, 56);
+    background-color: #77DD77;
     color: white;
     padding: .5vw 1vw;
     cursor: pointer;
 }
 
 .addBtn:disabled{
-    background-color: rgb(12, 210, 56);
+    opacity: 0.5;
+}
+
+.viewBtnDiv{
+    width: fit-content;
+    margin: 1vw auto;
+}
+
+.viewBtn{
+    border: none;
+    border-radius: 5px;
+    background-color: #809bce;
+    color: white;
+    margin: 1vw;
+    padding: .5vw 1vw;
+    cursor: pointer;
+}
+
+.viewBtn:disabled{
     opacity: 0.5;
 }

@@ -28,7 +28,7 @@ export default function EditTimeline(){
       fetchAndRenderTimelineEvents();
     }
 
-    const onChangeHandler = () => {
+    const onChangeInputHandler = () => {
       if(strInputRef.current.value.length > 0 && numInputRef.current.value.length > 0){
             addBtnRef.current.disabled = false;
       }else{
@@ -63,9 +63,9 @@ export default function EditTimeline(){
             <h1 className="header">Edit Timeline</h1>
             <div className="inputDiv">
                   <label>Title Of Event</label>
-                  <input className="input" type="text" ref={strInputRef} onChange={onChangeHandler}></input>
+                  <input className="input" type="text" ref={strInputRef} onChange={onChangeInputHandler}></input>
                   <label>Time Of Event</label>
-                  <input className="input" type="number" ref={numInputRef} onChange={onChangeHandler}></input>
+                  <input className="input" type="number" ref={numInputRef} onChange={onChangeInputHandler}></input>
                   <button className="addBtn" onClick={addAndRenderNewEvent} ref={addBtnRef}>Add</button>
             </div>
             <table>

@@ -8,6 +8,8 @@ export default function TimelineSelectMenu(){
       const colorInputRef = useRef(null);
       const nameInputRef = useRef(null);
       const addBtnRef = useRef(null);
+      const viewTimelineBtn = useRef(null);
+      const viewBothTimelinesBtn = useRef(null);
 
       const fetchAndRenderAllTimelines = async () => {
             try {
@@ -28,7 +30,7 @@ export default function TimelineSelectMenu(){
             fetchAndRenderAllTimelines();
       }
 
-      const onChangeHandler = () => {
+      const onChangeInputHandler = () => {
             if(colorInputRef.current.value.length > 0 && nameInputRef.current.value.length > 0){
                   addBtnRef.current.disabled = false;
             }else{
@@ -53,8 +55,32 @@ export default function TimelineSelectMenu(){
             fetchAndRenderAllTimelines();
       }
 
+      const onChangeSelectHandler = () => {
+            const numChecked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+            if(numChecked === 1){
+                  viewTimelineBtn.current.disabled = false;
+                  viewBothTimelinesBtn.current.disabled = true;
+            }else if(numChecked === 2){
+                  viewTimelineBtn.current.disabled = true;
+                  viewBothTimelinesBtn.current.disabled = false;
+            }else{
+                  viewTimelineBtn.current.disabled = true;
+                  viewBothTimelinesBtn.current.disabled = true;
+            }
+      }
+
+      const viewTimeline = () => {
+            console.log("view timeline");
+      }
+
+      const viewBothTimelines = () => {
+            console.log("view both timelines");
+      }
+
       useEffect(() => {
             addBtnRef.current.disabled = true;
+            viewTimelineBtn.current.disabled = true;
+            viewBothTimelinesBtn.current.disabled = true;
             fetchAndRenderAllTimelines();
       }, [])
 
@@ -63,15 +89,15 @@ export default function TimelineSelectMenu(){
             <h1 className="header">Timeline Select Menu</h1>
             <div className="inputDiv">
                   <label>Timeline Color</label>
-                  <input className="input" type="text" ref={colorInputRef} onChange={onChangeHandler}></input>
+                  <input className="input" type="text" ref={colorInputRef} onChange={onChangeInputHandler}></input>
                   <label>Timeline Name</label>
-                  <input className="input" type="text" ref={nameInputRef} onChange={onChangeHandler}></input>
+                  <input className="input" type="text" ref={nameInputRef} onChange={onChangeInputHandler}></input>
                   <button className="addBtn" onClick={addAndRenderNewTimeline} ref={addBtnRef}>Add</button>
             </div>
             <table>
                   <thead>
                         <tr>
-                              <th className="tableCol">Id</th>
+                              <th className="tableCol">Check To View</th>
                               <th className="tableCol">Color</th>
                               <th className="tableCol">Name</th>
                               <th className="tableCol">Edit</th>
@@ -81,7 +107,10 @@ export default function TimelineSelectMenu(){
                   <tbody>
                         {timelines.map((timeline, index) => (
                               <tr key={timeline._id} className={(index % 2 === 0) ? "evenRow" : "oddRow"}>
-                                    <td className="tableCol">{timeline._id}</td>
+                                    <td className="tableCol"><input type="checkbox" 
+                                                                  value={timeline._id} 
+                                                                  name={timeline._id}
+                                                                  onChange={onChangeSelectHandler}/></td>
                                     <td className="tableCol">{timeline.timelineColor}</td>
                                     <td className="tableCol">{timeline.timelineName}</td>
                                     <td className="tableCol"><Link to={"/EditTimeline/" + timeline._id}>Edit </Link></td>
@@ -94,6 +123,10 @@ export default function TimelineSelectMenu(){
                         ))}
                   </tbody>
             </table>
+            <div className="viewBtnDiv">
+                  <button className="viewBtn" ref={viewTimelineBtn} onClick={viewTimeline}>View Timeline</button>
+                  <button className="viewBtn" ref={viewBothTimelinesBtn} onClick={viewBothTimelines}>View Both Timelines</button>
+            </div>
             </>
       )
 }
