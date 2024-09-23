@@ -72,8 +72,13 @@ export default function TimelineSelectMenu(){
 
       const viewTimeline = () => {
             const checkedBoxArr = document.querySelectorAll('input[type="checkbox"]:checked');
-            const id = checkedBoxArr[0].value;
-            navigate(`/SingleTimelineScreen/${id}`)
+            const numOfEvents = parseInt(checkedBoxArr[0].getAttribute('numofevents'))
+            if(numOfEvents > 0){
+                  const id = checkedBoxArr[0].value;
+                  navigate(`/SingleTimelineScreen/${id}`)
+            }else{
+                  alert("You need to add at least one event to the timeline!")
+            }
       }
 
       const viewBothTimelines = () => {
@@ -104,6 +109,7 @@ export default function TimelineSelectMenu(){
                               <th className="tableCol">Check To View</th>
                               <th className="tableCol">Color</th>
                               <th className="tableCol">Name</th>
+                              <th className="tableCol">Num Of Events</th>
                               <th className="tableCol">Edit</th>
                               <th className="tableCol">Delete</th>
                         </tr>
@@ -114,9 +120,11 @@ export default function TimelineSelectMenu(){
                                     <td className="tableCol"><input type="checkbox" 
                                                                   value={timeline._id} 
                                                                   name={timeline._id}
+                                                                  numofevents={timeline.timelineEvents.length}
                                                                   onChange={onChangeSelectHandler}/></td>
                                     <td className="tableCol">{timeline.timelineColor}</td>
                                     <td className="tableCol">{timeline.timelineName}</td>
+                                    <td className="tableCol">{timeline.timelineEvents.length}</td>
                                     <td className="tableCol"><Link to={"/EditTimeline/" + timeline._id}>Edit </Link></td>
                                     <td className="tableCol trashCanCol">
                                           <button className="trashCanBtn" onClick={() => {deleteTimeline(timeline._id)}}>
