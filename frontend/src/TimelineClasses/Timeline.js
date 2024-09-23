@@ -28,7 +28,6 @@ export default class Timeline{
             this._startOfVisibleTimeline =  eventsArr[0].timeOfEvent;
             this._endOfVisibleTimeline = this._startOfVisibleTimeline + (this._width * this._unitsPerPixel);
             this._setVisiblePartOfTimeline();
-            console.log("setting", this.visiblePartOfTimeline)
         }
         this._drawQueue = [];
     }

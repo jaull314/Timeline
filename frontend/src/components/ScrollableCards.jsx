@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function ScrollableCards({color, visibleEvents}){
-    console.log(color)
     return (
         <div className="slots">
             {
