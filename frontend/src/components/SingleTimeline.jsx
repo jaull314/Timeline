@@ -1,6 +1,7 @@
 import TimelineEvent from "../TimelineClasses/TimelineEvent.js";
 import Timeline from "../TimelineClasses/Timeline.js"
 import TimelineCanvas from "./TimelineCanvas.jsx";
+import Header from "./Header.jsx";
 import ScrollableCards from "./ScrollableCards.jsx";
 import { useRef, useState} from "react";
 
@@ -11,6 +12,7 @@ export default function SingleTimeline({timelineObj}){
 
     return (
         <> 
+            <Header />
             <ScrollableCards color={"red"} visibleEvents={visibleTimelineArr} />
             <TimelineCanvas color={"red"} timelineObj={timelineRef.current}/>
             <div className="buttonContainer">

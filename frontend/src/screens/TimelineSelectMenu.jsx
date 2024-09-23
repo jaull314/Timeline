@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan, faSquare} from '@fortawesome/free-solid-svg-icons'
+import Header from "../components/Header";
 import SelectMenuInput from "../components/SelectMenuInput";
 
 export default function TimelineSelectMenu(){
@@ -76,6 +77,7 @@ export default function TimelineSelectMenu(){
 
       return(
             <>
+            <Header />
             <h1 className="header">Timeline Select Menu</h1>
             <SelectMenuInput parentComponentCallback={fetchAndRenderAllTimelines} />
             <table className="selectMenuTable">

@@ -52,6 +52,36 @@
     margin: 0vw;
 }
 
+.headerTitle{
+    color:#6b8ecf;
+    font-size: 3em;
+    padding: 0px;
+    margin: 0px;
+}
+
+.headerDiv{
+    border-bottom: 1px dotted #6b8ecf;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-around;
+    width: 50%;
+    padding: 0px;
+    margin: 0px auto;
+}
+
+
+.headerLinks{
+    color:#6b8ecf;
+    text-decoration: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.headerLinks:visited{
+    color:#6b8ecf;
+}
+
 .homeHeader{
     font-size: 5em;
     width: fit-content;
@@ -69,6 +99,7 @@
 }
 
 .homeLinks{
+    text-decoration: none;
     font-size: 1.5em;
     color:#6b8ecf;
 }

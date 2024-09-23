@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import Header from "../components/Header";
 import EditTimelineInput from "../components/EditTimelineInput";
 
 export default function EditTimeline(){
@@ -32,6 +33,7 @@ export default function EditTimeline(){
 
     return (
         <>
+            <Header />
             <h1 className="header">Edit Timeline</h1>
             <EditTimelineInput id={id} parentComponentCallback={fetchAndRenderTimelineEvents}  />
             <table className="editTable">
