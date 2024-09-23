@@ -28,6 +28,7 @@ export default class Timeline{
             this._startOfVisibleTimeline =  eventsArr[0].timeOfEvent;
             this._endOfVisibleTimeline = this._startOfVisibleTimeline + (this._width * this._unitsPerPixel);
             this._setVisiblePartOfTimeline();
+            console.log("setting", this.visiblePartOfTimeline)
         }
         this._drawQueue = [];
     }
@@ -173,7 +174,6 @@ export default class Timeline{
             this._drawEvent(ctx, this._drawQueue[i]);
         }
         this._drawVisibleStartAndEndTimes(ctx);
-        
         console.log("unitsPerPixel: ", this._unitsPerPixel);
         console.log("startOfVisibleTimeline: ", this._startOfVisibleTimeline);
         console.log("endOfVisibleTimeline: ", this._endOfVisibleTimeline);
