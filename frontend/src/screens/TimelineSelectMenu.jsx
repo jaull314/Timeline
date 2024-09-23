@@ -110,32 +110,37 @@ export default function TimelineSelectMenu(){
                   <input className="input" type="text" ref={nameInputRef} onChange={onChangeInputHandler}></input>
                   <button className="addBtn" onClick={addAndRenderNewTimeline} ref={addBtnRef}>Add</button>
             </div>
-            <table>
+            <table className="selectMenuTable">
                   <thead>
                         <tr>
-                              <th className="tableCol">Check To View</th>
-                              <th className="tableCol">Color</th>
-                              <th className="tableCol">Name</th>
-                              <th className="tableCol">Num Of Events</th>
-                              <th className="tableCol">Edit</th>
-                              <th className="tableCol">Delete</th>
+                              <th className="tableCol checkCol">View</th>
+                              <th className="tableCol colorCol">Color</th>
+                              <th className="tableCol nameCol">Name</th>
+                              <th className="tableCol numEventsCol">Num Events</th>
+                              <th className="tableCol firstEventCol">First Event</th>
+                              <th className="tableCol lastEventCol">Last Event</th>
+                              <th className="tableCol editCol">Edit</th>
+                              <th className="tableCol deleteCol">Delete</th>
                         </tr>
                   </thead>
                   <tbody>
                         {timelines.map((timeline, index) => (
                               <tr key={timeline._id} className={(index % 2 === 0) ? "evenRow" : "oddRow"}>
-                                    <td className="tableCol"><input type="checkbox" 
+                                    <td className="tableCol checkCol"><input type="checkbox" 
                                                                   value={timeline._id} 
                                                                   name={timeline._id}
                                                                   numofevents={timeline.timelineEvents.length}
                                                                   onChange={onChangeSelectHandler}/></td>
-                                    <td className="tableCol">{timeline.timelineColor}</td>
-                                    <td className="tableCol">{timeline.timelineName}</td>
-                                    <td className="tableCol">{timeline.timelineEvents.length}</td>
-                                    <td className="tableCol"><Link to={"/EditTimeline/" + timeline._id} className="editLink">
+                                    <td className="tableCol colorCol">{timeline.timelineColor}</td>
+                                    <td className="tableCol nameCol">{timeline.timelineName}</td>
+                                    <td className="tableCol numEventsCol">{timeline.timelineEvents.length}</td>
+                                    <td className="tableCol firstEventCol">First Event</td>
+                                    <td className="tableCol lastEventCol">Last Event</td>
+                                    <td className="tableCol editCol"><Link to={"/EditTimeline/" + timeline._id} className="editLink">
                                                                         Edit 
-                                                            </Link></td>
-                                    <td className="tableCol trashCanCol">
+                                                                  </Link>
+                                    </td>
+                                    <td className="tableCol deleteCol">
                                           <button className="trashCanBtn" onClick={() => {deleteTimeline(timeline._id)}}>
                                                 <FontAwesomeIcon icon={faTrashCan} />
                                           </button>

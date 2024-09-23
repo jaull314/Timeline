@@ -75,28 +75,22 @@ export default function EditTimeline(){
                   <input className="input" type="text" ref={descriptInputRef} onChange={onChangeInputHandler}></input>
                   <button className="addBtn" onClick={addAndRenderNewEvent} ref={addBtnRef}>Add</button>
             </div>
-            <table>
+            <table className="editTable">
                   <thead>
                         <tr>
-                              <th className="tableCol">Color</th>
-                              <th className="tableCol">Title</th>
-                              <th className="tableCol">Event Time</th>
-                              <th className="tableCol">Description</th>
-                              <th className="tableCol">First Event</th>
-                              <th className="tableCol">Last Event</th>
-                              <th className="tableCol">Delete</th>
+                              <th className="tableCol editTitleCol">Title</th>
+                              <th className="tableCol editEventTimeCol">Event Time</th>
+                              <th className="tableCol editDescriptCol">Description</th>
+                              <th className="tableCol editDeleteCol">Delete</th>
                         </tr>
                   </thead>
                   <tbody>
                         {timelineEvents.map((timelineEvent, index) => (
                                     <tr key={timelineEvent._id} className={(index % 2 === 0) ? "evenRow" : "oddRow"}>
-                                          <td className="tableCol">Color</td>
-                                          <td className="tableCol">{timelineEvent.title}</td>
-                                          <td className="tableCol">{timelineEvent.timeOfEvent}</td>
-                                          <td className="tableCol">Description</td>
-                                          <td className="tableCol">First Event</td>
-                                          <td className="tableCol">Last Event</td>
-                                          <td className="tableCol trashCanCol">
+                                          <td className="tableCol editTitleCol">{timelineEvent.title}</td>
+                                          <td className="tableCol editEventTimeCol">{timelineEvent.timeOfEvent}</td>
+                                          <td className="tableCol editDescriptCol">Description</td>
+                                          <td className="tableCol editDeleteCol">
                                                 <button className="trashCanBtn" onClick={() => {deleteEvent(id, timelineEvent._id)}}>
                                                       <FontAwesomeIcon icon={faTrashCan} />
                                                 </button>
@@ -108,5 +102,3 @@ export default function EditTimeline(){
         </>
     )
 }
-
-       

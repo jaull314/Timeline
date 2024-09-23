@@ -82,8 +82,9 @@
     margin: 2vw auto;
 }
 
-table{
-    width: fit-content;
+
+.selectMenuTable{
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -98,7 +99,30 @@ table{
 
 .tableCol{
     text-align: left;
-    width:16%;
+}
+
+.checkCol{
+    width: 5%;
+}
+
+.colorCol{
+    width: 16%;
+}
+
+.nameCol{
+    width: 20%;
+}
+
+.numEventsCol{
+    width: 9%;
+}
+
+.firstEventCol, .lastEventCol{
+    width: 20%;
+}
+
+.editCol, .deleteCol{
+    width: 5%;
 }
 
 .trashCanBtn {
@@ -107,7 +131,16 @@ table{
     cursor: pointer
 }
 
-.trashCanCol{
+.editTable{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.editTitleCol, .editEventTimeCol, .editDescriptCol{
+    width: 22%;
+}
+
+.editDeleteCol{
     width: 4%;
 }
 
