@@ -1,7 +1,7 @@
 import React from 'react'
 import {useRef, useEffect} from 'react';
 
-export default function TimelineCanvas({color, timelineObj}){
+export default function TimelineCanvas({color, timeline}){
     
     const canvasRef = useRef(null);
     
@@ -10,7 +10,7 @@ export default function TimelineCanvas({color, timelineObj}){
         ctx.font = "575 12px serif";
         ctx.textAlign = "center";
         ctx.fillStyle = color;
-        timelineObj.drawTimeline(ctx)
+        timeline.drawTimeline(ctx)
     })
 
     return (

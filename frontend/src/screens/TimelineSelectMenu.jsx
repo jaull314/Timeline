@@ -74,9 +74,10 @@ export default function TimelineSelectMenu(){
             const checkedBoxArr = document.querySelectorAll('input[type="checkbox"]:checked');
             const numOfEventsForTimelineA = parseInt(checkedBoxArr[0].getAttribute('numofevents'))
             const numOfEventsForTimelineB = parseInt(checkedBoxArr[1].getAttribute('numofevents'))
-            if(numOfEventsForTimelineA > 0 && numOfEventsForTimelineB){
-                  const id = checkedBoxArr[0].value;
-                  navigate(`/TwoTimelinesScreen/${id}`)
+            if(numOfEventsForTimelineA > 0 && numOfEventsForTimelineB > 0){
+                  const firstId = checkedBoxArr[0].value;
+                  const secondId = checkedBoxArr[1].value;
+                  navigate(`/TwoTimelinesScreen/${firstId}/${secondId}`)
             }else{
                   alert("Each Timeline needs to have at least one event!")
             }
