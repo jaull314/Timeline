@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { faTrashCan, faSquare} from '@fortawesome/free-solid-svg-icons'
+import SelectMenuInput from "../components/SelectMenuInput";
 
 export default function TimelineSelectMenu(){
       const navigate = useNavigate();
       const [timelines, setTimelines] = useState([]);
-      const colorInputRef = useRef(null);
-      const nameInputRef = useRef(null);
-      const addBtnRef = useRef(null);
+      const changeColorInputRef = useRef(null);
+      const changeColorBtnRef = useRef(null);
       const viewTimelineBtn = useRef(null);
       const viewBothTimelinesBtn = useRef(null);
 
@@ -28,31 +28,6 @@ export default function TimelineSelectMenu(){
 
       const deleteTimeline = async (id) => {
             await fetch(`http://localhost:5000/deleteTimeline/${id}`, { method: 'DELETE' })
-            fetchAndRenderAllTimelines();
-      }
-
-      const onChangeInputHandler = () => {
-            if(colorInputRef.current.value.length > 0 && nameInputRef.current.value.length > 0){
-                  addBtnRef.current.disabled = false;
-            }else{
-                  addBtnRef.current.disabled = true;
-            }
-      }
-
-      const addAndRenderNewTimeline= async () => {
-            addBtnRef.current.disabled = true;
-            let data = {color: colorInputRef.current.value, name: nameInputRef.current.value}
-            await fetch(`http://localhost:5000/addTimeline`,
-                  {
-                        method: 'POST',
-                        headers: {
-                              'Content-Type': 'application/json', // This is crucial
-                          },
-                        body: JSON.stringify(data)
-                  }
-            )
-            colorInputRef.current.value = "";
-            nameInputRef.current.value = "";
             fetchAndRenderAllTimelines();
       }
 
@@ -94,7 +69,6 @@ export default function TimelineSelectMenu(){
       }
 
       useEffect(() => {
-            addBtnRef.current.disabled = true;
             viewTimelineBtn.current.disabled = true;
             viewBothTimelinesBtn.current.disabled = true;
             fetchAndRenderAllTimelines();
@@ -103,23 +77,18 @@ export default function TimelineSelectMenu(){
       return(
             <>
             <h1 className="header">Timeline Select Menu</h1>
-            <div className="inputDiv">
-                  <label>Timeline Color</label>
-                  <input className="input" type="text" ref={colorInputRef} onChange={onChangeInputHandler}></input>
-                  <label>Timeline Name</label>
-                  <input className="input" type="text" ref={nameInputRef} onChange={onChangeInputHandler}></input>
-                  <button className="addBtn" onClick={addAndRenderNewTimeline} ref={addBtnRef}>Add</button>
-            </div>
+            <SelectMenuInput parentComponentCallback={fetchAndRenderAllTimelines} />
             <table className="selectMenuTable">
                   <thead>
                         <tr>
                               <th className="tableCol checkCol">View</th>
                               <th className="tableCol colorCol">Color</th>
+                              <th className="tableCol changeColorCol">&nbsp;&nbsp;Change Color</th>
                               <th className="tableCol nameCol">Name</th>
                               <th className="tableCol numEventsCol">Num Events</th>
                               <th className="tableCol firstEventCol">First Event</th>
                               <th className="tableCol lastEventCol">Last Event</th>
-                              <th className="tableCol editCol">Edit</th>
+                              <th className="tableCol editLinkCol">Edit</th>
                               <th className="tableCol deleteCol">Delete</th>
                         </tr>
                   </thead>
@@ -131,14 +100,33 @@ export default function TimelineSelectMenu(){
                                                                   name={timeline._id}
                                                                   numofevents={timeline.timelineEvents.length}
                                                                   onChange={onChangeSelectHandler}/></td>
-                                    <td className="tableCol colorCol">{timeline.timelineColor}</td>
+                                    <td className="tableCol colorCol"><FontAwesomeIcon 
+                                                                        icon={faSquare}
+                                                                        style={{color: timeline.timelineColor}}/>
+                                    </td>
+                                    <td className="tableCol changeColorCol">
+                                          <select name="color" className="input" ref={changeColorInputRef} >
+                                                <option value="#dfb2f4">Pastel Purple</option>
+                                                <option value="#ffc8dd">Pastel Pink</option>
+                                                <option value="#1b85b8">Pastel Blue</option>
+                                                <option value="#61f4de">Pastel Turquoise</option>
+                                                <option value="#559e83">Pastel Dark Green</option>
+                                                <option value="#77DD77">Pastel Light Green</option>
+                                                <option value="#f5e960">Pastel Yellow</option>
+                                                <option value="#f6ac69">Pastel Orange</option>
+                                                <option value="#ff686b">Pastel Red</option>
+                                                <option value="#dab894">Pastel Brown</option>
+                                          </select>
+                                          <button ref={changeColorBtnRef}>Change</button>
+                                    </td>
                                     <td className="tableCol nameCol">{timeline.timelineName}</td>
                                     <td className="tableCol numEventsCol">{timeline.timelineEvents.length}</td>
                                     <td className="tableCol firstEventCol">First Event</td>
                                     <td className="tableCol lastEventCol">Last Event</td>
-                                    <td className="tableCol editCol"><Link to={"/EditTimeline/" + timeline._id} className="editLink">
-                                                                        Edit 
-                                                                  </Link>
+                                    <td className="tableCol editCol">
+                                          <Link to={"/EditTimeline/" + timeline._id} className="editLink">
+                                                Edit 
+                                          </Link>
                                     </td>
                                     <td className="tableCol deleteCol">
                                           <button className="trashCanBtn" onClick={() => {deleteTimeline(timeline._id)}}>
