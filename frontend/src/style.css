@@ -86,8 +86,17 @@ table{
     width: 4%;
 }
 
+.backLink, .editLink{
+    color:#6b8ecf;
+    margin: 2vw;
+}
+
+.backLink:visited, .editLink:visited{
+    color:#6b8ecf;
+}
+
 .inputDiv{
-    width: 42%;
+    width: fit-content;
     margin: .5vw auto;
 }
 

@@ -25,10 +25,10 @@ export async function addTimeline(req, res){
 
 export async function addTimelineEvent(req, res){
     const id = req.params.id;
-    const {title, timeOfEvent} = req.body;
+    const {title, timeOfEvent, description} = req.body;
     let updatedDoc = await Timeline.updateOne(
         {_id: id},
-        {$push: {timelineEvents: {title: title, timeOfEvent: timeOfEvent}}}
+        {$push: {timelineEvents: {title: title, timeOfEvent: timeOfEvent, description: description}}}
         
     )
     console.log(updatedDoc)

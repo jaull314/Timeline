@@ -83,7 +83,14 @@ export default function TimelineSelectMenu(){
 
       const viewBothTimelines = () => {
             const checkedBoxArr = document.querySelectorAll('input[type="checkbox"]:checked');
-            console.log("view both timelines");
+            const numOfEventsForTimelineA = parseInt(checkedBoxArr[0].getAttribute('numofevents'))
+            const numOfEventsForTimelineB = parseInt(checkedBoxArr[1].getAttribute('numofevents'))
+            if(numOfEventsForTimelineA > 0 && numOfEventsForTimelineB){
+                  const id = checkedBoxArr[0].value;
+                  navigate(`/TwoTimelinesScreen/${id}`)
+            }else{
+                  alert("Each Timeline needs to have at least one event!")
+            }
       }
 
       useEffect(() => {
@@ -125,7 +132,9 @@ export default function TimelineSelectMenu(){
                                     <td className="tableCol">{timeline.timelineColor}</td>
                                     <td className="tableCol">{timeline.timelineName}</td>
                                     <td className="tableCol">{timeline.timelineEvents.length}</td>
-                                    <td className="tableCol"><Link to={"/EditTimeline/" + timeline._id}>Edit </Link></td>
+                                    <td className="tableCol"><Link to={"/EditTimeline/" + timeline._id} className="editLink">
+                                                                        Edit 
+                                                            </Link></td>
                                     <td className="tableCol trashCanCol">
                                           <button className="trashCanBtn" onClick={() => {deleteTimeline(timeline._id)}}>
                                                 <FontAwesomeIcon icon={faTrashCan} />

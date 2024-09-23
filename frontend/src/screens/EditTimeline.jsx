@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
@@ -6,8 +6,9 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 export default function EditTimeline(){
     const {id} = useParams();
     const [timelineEvents, setTimelineEvents] = useState([]);
-    const strInputRef = useRef(null);
-    const numInputRef = useRef(null);
+    const titleInputRef = useRef(null);
+    const timeInputRef = useRef(null);
+    const descriptInputRef = useRef(null);
     const addBtnRef = useRef(null);
 
     const fetchAndRenderTimelineEvents = async () => {
@@ -29,7 +30,7 @@ export default function EditTimeline(){
     }
 
     const onChangeInputHandler = () => {
-      if(strInputRef.current.value.length > 0 && numInputRef.current.value.length > 0){
+      if(titleInputRef.current.value.length > 0 && timeInputRef.current.value.length > 0 && descriptInputRef.current.value.length > 0){
             addBtnRef.current.disabled = false;
       }else{
             addBtnRef.current.disabled = true;
@@ -38,7 +39,9 @@ export default function EditTimeline(){
 
     const addAndRenderNewEvent = async () => {
       addBtnRef.current.disabled = true;
-      let data = {title: strInputRef.current.value, timeOfEvent: parseInt(numInputRef.current.value)}
+      let data = {title: titleInputRef.current.value, 
+            timeOfEvent: parseInt(timeInputRef.current.value), 
+            description: descriptInputRef.current.value}
       await fetch(`http://localhost:5000/addTimelineEvent/${id}`,
             {
                   method: 'POST',
@@ -48,8 +51,9 @@ export default function EditTimeline(){
                   body: JSON.stringify(data)
             }
       )
-      strInputRef.current.value = "";
-      numInputRef.current.value = "";
+      titleInputRef.current.value = "";
+      timeInputRef.current.value = "";
+      descriptInputRef.current.value = "";
       fetchAndRenderTimelineEvents();
     }
 
@@ -62,10 +66,13 @@ export default function EditTimeline(){
         <>
             <h1 className="header">Edit Timeline</h1>
             <div className="inputDiv">
+                  <Link to="/TimelineSelectMenu" className="backLink">&lt;- Menu</Link>
                   <label>Title Of Event</label>
-                  <input className="input" type="text" ref={strInputRef} onChange={onChangeInputHandler}></input>
+                  <input className="input" type="text" ref={titleInputRef} onChange={onChangeInputHandler}></input>
                   <label>Time Of Event</label>
-                  <input className="input" type="number" ref={numInputRef} onChange={onChangeInputHandler}></input>
+                  <input className="input" type="number" ref={timeInputRef} onChange={onChangeInputHandler}></input>
+                  <label>Event Description</label>
+                  <input className="input" type="text" ref={descriptInputRef} onChange={onChangeInputHandler}></input>
                   <button className="addBtn" onClick={addAndRenderNewEvent} ref={addBtnRef}>Add</button>
             </div>
             <table>

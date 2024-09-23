@@ -14,7 +14,6 @@ export default function SingleTimelineScreen(){
           }
           const timelineResponse = await response.json();
           setTimeline(timelineResponse)
-          console.log(timelineResponse)
     } catch (error) {
           console.error('Error fetching timelines:', error);
     }

@@ -9,7 +9,8 @@ const timelineSchema = mongoose.Schema(
     timelineEvents: [
       {
         title: { type: String, required: true },
-        timeOfEvent: { type: Number, required: true }
+        timeOfEvent: { type: Number, required: true },
+        description: { type: String, required: true }
       }
     ]
 
