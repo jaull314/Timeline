@@ -52,6 +52,31 @@
     margin: 0vw;
 }
 
+.homeHeader{
+    font-size: 5em;
+    width: fit-content;
+    margin: 2vw auto;
+}
+
+#homeDiv{
+    width: fit-content;
+    margin: 10vw auto;
+}
+
+#homeLinksDiv{
+    width: fit-content;
+    margin: 2vw auto;
+}
+
+.homeLinks{
+    font-size: 1.5em;
+    color:#6b8ecf;
+}
+
+.homeLinks:visited{
+    color:#6b8ecf;
+}
+
 .header{
     width: fit-content;
     margin: 2vw auto;
