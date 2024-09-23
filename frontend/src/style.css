@@ -15,12 +15,15 @@
     height: 2vw;
     width: 4vw;
     margin: .25vw .25vw;
+    background-color: #5a5255;
+    color: white;
+    border-radius: 5px;
 }
 
 .slots {
     width: 75%;
-    min-height: 16.5vw;
-    margin: 0 auto;
+    min-height: 15.5vw;
+    margin: 2vw auto;
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
@@ -29,7 +32,7 @@
 .card {
     position: relative;
     width: 12vw;
-    height: 16vw;
+    height: 15vw;
     border: 2px solid black;
     border-radius: 4px;
     padding: 0vw;
@@ -52,15 +55,20 @@
     margin: 0vw;
 }
 
+#singleTimelineBtnContainer{
+    margin-bottom: 2vw;
+
+}
+
 .headerTitle{
-    color:#6b8ecf;
+    color:#5a5255;
     font-size: 3em;
     padding: 0px;
     margin: 0px;
 }
 
 .headerDiv{
-    border-bottom: 1px dotted #6b8ecf;
+    border-bottom: 1px dotted #5a5255;
     display: flex;
     flex-direction: row;
     align-items: baseline;
@@ -72,17 +80,18 @@
 
 
 .headerLinks{
-    color:#6b8ecf;
+    color:#5a5255;
     text-decoration: none;
     padding: 0px;
     margin: 0px;
 }
 
 .headerLinks:visited{
-    color:#6b8ecf;
+    color:#5a5255;
 }
 
 .homeHeader{
+    color:#5a5255;
     font-size: 5em;
     width: fit-content;
     margin: 2vw auto;
@@ -101,7 +110,7 @@
 .homeLinks{
     text-decoration: none;
     font-size: 1.5em;
-    color:#6b8ecf;
+    color: #6b8ecf;
 }
 
 .homeLinks:visited{

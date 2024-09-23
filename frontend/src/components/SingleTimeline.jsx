@@ -13,9 +13,9 @@ export default function SingleTimeline({timelineObj}){
     return (
         <> 
             <Header />
-            <ScrollableCards color={"red"} visibleEvents={visibleTimelineArr} />
-            <TimelineCanvas color={"red"} timelineObj={timelineRef.current}/>
-            <div className="buttonContainer">
+            <ScrollableCards color={timelineObj.timelineColor} visibleEvents={visibleTimelineArr} />
+            <TimelineCanvas color={timelineObj.timelineColor} timelineObj={timelineRef.current}/>
+            <div id="singleTimelineBtnContainer" className="buttonContainer">
                 <div>
                     <button id="zoomOut" className="zoomOut" onClick={() => {
                             timelineRef.current.zoomOutForTimeline();

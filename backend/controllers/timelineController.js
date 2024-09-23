@@ -51,8 +51,6 @@ export async function deleteEvent(req, res){
 export async function changeColor(req, res){
     const id = req.params.id;
     const {color} = req.body;
-    console.log("thee color is:", color)
     let updatedDoc = await Timeline.updateOne({_id: id}, {$set: {timelineColor: color}})
-    console.log("updateDoc here:", updatedDoc)
     res.json(updatedDoc)
 }
