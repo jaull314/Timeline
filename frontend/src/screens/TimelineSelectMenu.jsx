@@ -8,7 +8,6 @@ import SelectMenuInput from "../components/SelectMenuInput";
 export default function TimelineSelectMenu(){
       const navigate = useNavigate();
       const [timelines, setTimelines] = useState([]);
-      const changeColorInputRef = useRef(null);
       const changeColorBtnRef = useRef(null);
       const viewTimelineBtn = useRef(null);
       const viewBothTimelinesBtn = useRef(null);
@@ -44,6 +43,20 @@ export default function TimelineSelectMenu(){
                   viewTimelineBtn.current.disabled = true;
                   viewBothTimelinesBtn.current.disabled = true;
             }
+      }
+
+      const changeColorHandler = async (id, color) => {
+            let data = {color: color}
+            let response = await fetch(`http://localhost:5000/changeColor/${id}`,
+                  {
+                        method: 'POST',
+                        headers: {
+                              'Content-Type': 'application/json', // This is crucial
+                          },
+                        body: JSON.stringify(data)
+                  }
+            )
+            fetchAndRenderAllTimelines();
       }
 
       const viewTimeline = () => {
@@ -107,7 +120,7 @@ export default function TimelineSelectMenu(){
                                                                         style={{color: timeline.timelineColor}}/>
                                     </td>
                                     <td className="tableCol changeColorCol">
-                                          <select name="color" className="input" ref={changeColorInputRef} >
+                                          <select name="color" className="input" id={index} >
                                                 <option value="#dfb2f4">Pastel Purple</option>
                                                 <option value="#ffc8dd">Pastel Pink</option>
                                                 <option value="#1b85b8">Pastel Blue</option>
@@ -119,7 +132,10 @@ export default function TimelineSelectMenu(){
                                                 <option value="#ff686b">Pastel Red</option>
                                                 <option value="#dab894">Pastel Brown</option>
                                           </select>
-                                          <button ref={changeColorBtnRef}>Change</button>
+                                          <button onClick={() => changeColorHandler(timeline._id, document.getElementById(index).value)} 
+                                          ref={changeColorBtnRef}>
+                                                Change
+                                          </button>
                                     </td>
                                     <td className="tableCol nameCol">{timeline.timelineName}</td>
                                     <td className="tableCol numEventsCol">{timeline.timelineEvents.length}</td>

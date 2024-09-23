@@ -9,7 +9,8 @@ import {getTimeline,
     addTimelineEvent, 
     addTimeline, 
     deleteEvent,
-    deleteTimeline
+    deleteTimeline,
+    changeColor
 } from './controllers/timelineController.js';
 
 connectDB() //connect to Mongo Database
@@ -37,6 +38,8 @@ app.post("/addTimelineEvent/:id", addTimelineEvent);
 app.delete("/deleteTimeline/:id", deleteTimeline);
 
 app.delete("/deleteEvent/:id/:eventId", deleteEvent)
+
+app.post("/changeColor/:id", changeColor);
 
 app.listen(port, () => {
     console.log(`Server is running on ${port}`);
