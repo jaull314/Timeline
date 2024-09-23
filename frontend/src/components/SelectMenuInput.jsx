@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 
-
 export default function SelectMenuInput({parentComponentCallback}){
         const colorInputRef = useRef(null);
         const nameInputRef = useRef(null);
