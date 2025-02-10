@@ -40,7 +40,7 @@ function _sliceArrAndAddElipsis(lineLength, maxNumOfLines, trimmedArr){
             elipsisArr.pop();
         }
         let lastLine = elipsisArr[maxNumOfLines - 1];
-        lastLine = lastLine.substring(0, lineLength - 3) + "...";
+        lastLine = lastLine.substring(0, this._lineLength - 3) + "...";
 
         elipsisArr[maxNumOfLines - 1] = lastLine;
     }
