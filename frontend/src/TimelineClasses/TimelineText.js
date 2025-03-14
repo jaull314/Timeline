@@ -31,7 +31,7 @@ function _trimTitleOrTimeArr(hyphensArr){
     return trimmedArr;
 }
 
-function _sliceArrAndAddElipsis(maxNumOfLines, trimmedArr){
+function _sliceArrAndAddElipsis(lineLength, maxNumOfLines, trimmedArr){
     /* the title should take up to a maximum of 3 lines and 
     the time should take to up a maximum of 2 lines */
     let elipsisArr = trimmedArr;
@@ -52,7 +52,7 @@ export function formatText(lineLength, maxNumLinesForText, text){
     formattedTitle = _addHyphensToTitleOrTimeArr(formattedTitle);
     formattedTitle = _trimTitleOrTimeArr(formattedTitle);
     //    _sliceArrAndAddElipsis(maxNumOfLines, trimmedArrFromEitherTitleOrTime)
-    formattedTitle = _sliceArrAndAddElipsis(maxNumLinesForText, formattedTitle);
+    formattedTitle = _sliceArrAndAddElipsis(lineLength, maxNumLinesForText, formattedTitle);
     return formattedTitle
 }
 

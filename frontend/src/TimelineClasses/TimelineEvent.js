@@ -2,9 +2,10 @@ import * as TimelineText from "./TimelineText.js"
 
 export default class TimelineEvent{
 
-    constructor(titleStr, timeOfEvent){
+    constructor(titleStr, timeOfEvent, description){
         this.title = titleStr;
         this.timeOfEvent = timeOfEvent;
+        this.description = description;
         this._lineLength = 12;
         const titleMaxNumLines = 3;
         const timeMaxNumLines = 2;

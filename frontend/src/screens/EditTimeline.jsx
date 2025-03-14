@@ -50,7 +50,7 @@ export default function EditTimeline(){
                                     <tr key={timelineEvent._id} className={(index % 2 === 0) ? "evenRow" : "oddRow"}>
                                           <td className="tableCol editTitleCol">{timelineEvent.title}</td>
                                           <td className="tableCol editEventTimeCol">{timelineEvent.timeOfEvent}</td>
-                                          <td className="tableCol editDescriptCol">Description</td>
+                                          <td className="tableCol editDescriptCol">{timelineEvent.description}</td>
                                           <td className="tableCol editDeleteCol">
                                                 <button className="trashCanBtn" onClick={() => {deleteEvent(id, timelineEvent._id)}}>
                                                       <FontAwesomeIcon icon={faTrashCan} />
