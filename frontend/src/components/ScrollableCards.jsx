@@ -7,9 +7,7 @@ export default function ScrollableCards({color, visibleEvents}){
                 visibleEvents.map((visibleEvent, index) => (
                     <div key= {index} className="card" style={{backgroundColor: color}}>
                         <h3>{visibleEvent.title}</h3>
-                        <p>blah blah blah blah blah blah blah blah
-                            blah blah blah blahblah blah blah blah
-                        </p>
+                        <p>{visibleEvent.description}</p>
                     </div>
                 ))
             }
